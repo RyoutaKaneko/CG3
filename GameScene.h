@@ -7,7 +7,8 @@
 #include "Input.h"
 #include "time.h"
 #include <random>
-using namespace DirectX;
+#include "Model.h"
+#include "ViewProjection.h"
 
 class GameScene {
 public:
@@ -16,36 +17,27 @@ public:
 
 	~GameScene();
 
-	void Initialize(WinApp* winApp, DirectXCommon* dxCommon);
+	void Initialize(SpriteCommon& spriteCommon);
 
 	void Update();
 
-	void Draw(DirectXCommon* dxCommon);
-
-	XMFLOAT3 AddXMFLOAT3(XMFLOAT3 a, XMFLOAT3 b);
-
-	XMFLOAT3 SubXMFLOAT3(XMFLOAT3 a, XMFLOAT3 b);
-
-	int CheckHit(Object3d* object);
-
-	void Reset();
-
-	void Sporn(Object3d* object);
+	void Draw();
 
 private:
+	DirectXCommon* dxCommon = nullptr;
+	WinApp* winApp = nullptr;
 	//入力のポインタ
 	Input* input = nullptr;
 	//スプライトのポインタ
 	Sprite* sprite = new Sprite;
+	SpriteCommon spriteCommon_;
+	Sprite wood;
 	//オブジェクトのポインタ
 	//3Dオブジェクト生成
-	Object3d* player = Object3d::Create();
-
+	Model* playerModel = nullptr;
+	Object3d* player = nullptr;
+	//カメラ
+	ViewProjection* viewProjection = nullptr;
 	
-	
-	/////-----ゲームループの変数-----/////
-	XMFLOAT3 playerVec;
-
-	XMFLOAT3 move;
 
 };

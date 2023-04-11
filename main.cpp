@@ -18,22 +18,22 @@
 
 using namespace Microsoft::WRL;
 
-// ウィンドウプロシージャ
-LRESULT WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
-{
-	//メッセージに応じてゲーム固有の処理を行う
-	switch (msg)
-	{
-		//ウィンドウが破棄された
-	case WM_DESTROY:
-		//OSに対して、アプリの終了を伝える
-		PostQuitMessage(0);
-		return 0;
-	}
-
-	//標準のメッセージ処理を行う
-	return DefWindowProc(hwnd, msg, wparam, lparam);
-}
+//// ウィンドウプロシージャ
+//LRESULT WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
+//{
+//	//メッセージに応じてゲーム固有の処理を行う
+//	switch (msg)
+//	{
+//		//ウィンドウが破棄された
+//	case WM_DESTROY:
+//		//OSに対して、アプリの終了を伝える
+//		PostQuitMessage(0);
+//		return 0;
+//	}
+//
+//	//標準のメッセージ処理を行う
+//	return DefWindowProc(hwnd, msg, wparam, lparam);
+//}
 
 //定数バッファ用データ構造体(マテリアル)
 struct ConstBufferDataMaterial {
@@ -49,29 +49,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 
 #pragma region 基盤システムの初期化
-	//WindowsAPIのポインタ
+	// WindowsAPIの初期化
 	WinApp* winApp = nullptr;
-	//WindowsAPIの初期化
-	winApp = new WinApp();
+	winApp = WinApp::GetInstance();
 	winApp->Initialize();
-	//DirectXのポインタ
+
+	// DirectXの初期化
 	DirectXCommon* dxCommon = nullptr;
-	//DirectXの初期化
-	dxCommon = new DirectXCommon();
+	dxCommon = DirectXCommon::GetInstance();
 	dxCommon->Initialize(winApp);
+
+	// 入力の初期化
+	Input* input = nullptr;
+	input = Input::GetInstance();
+	input->Initialize(winApp);
+	//スプライト
+	SpriteCommon spriteCommon;
 	//ゲームシーン
 	GameScene* gameScene = nullptr;
-	//スプライトのポインタ
-	Sprite* sprite = new Sprite;
-	//スプライトの初期化
-	sprite->Initialize(dxCommon, WinApp::window_width, WinApp::window_height);
 	//3Dオブジェクト静的初期化
 	Object3d::StaticInitialize(dxCommon->GetDevice(), WinApp::window_width, WinApp::window_height);
+	// ビュープロジェクションの初期化
+	ViewProjection::StaticInitialize(dxCommon->GetDevice());
 #pragma endregion 基盤システムの初期化
 
 	//ゲームシーン
 	gameScene = new GameScene();
-	gameScene->Initialize(winApp, dxCommon);
+	gameScene->Initialize(spriteCommon);
 ///-------------ゲームループ---------------///
 	while (true)
 	{
@@ -84,13 +88,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			break;
 		}
 
-		//入力の更新
-		sprite->Update();
 		gameScene->Update();
 
 #pragma endregion 基盤システムの更新
 		
-		gameScene->Draw(dxCommon);
+		gameScene->Draw();
 	}
 
 #pragma region 最初のシーンの終了
@@ -106,15 +108,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	//WindowsAPIの終了処理
 	winApp->Finalize();
-
-	//DirectX解放
-	delete dxCommon;
-
-	//sprite
-	delete sprite;
-
-	//WindowsAPI解放
-	delete winApp;
 
 #pragma endregion 基盤システムの終了
 
