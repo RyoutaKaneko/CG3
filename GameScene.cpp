@@ -20,6 +20,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	player->SetPosition(Vector3(0, 0, -25));
 	//カメラ
 	viewProjection = new ViewProjection;
+	viewProjection->Initialize();
 	viewProjection->eye = { 0, 3, -30 };
 	viewProjection->target = { 0, 0, -15 };
 
@@ -30,7 +31,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	// スプライト用パイプライン生成呼び出し
 	PipelineSet spritePipelineSet = sprite->SpriteCreateGraphicsPipeline(dxCommon->GetDevice());
 
-	// HP
+	//木の画像
 	wood.LoadTexture(spriteCommon_, 0, L"Resources/wood.png", dxCommon->GetDevice());
 	wood.SetColor(Vector4(1, 1, 1, 1));
 	wood.SpriteCreate(dxCommon->GetDevice(), 50, 50, 0, spriteCommon, Vector2(0.0f, 0.0f), false, false);
@@ -45,7 +46,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 void GameScene::Update() {
 	input->Update();
 
-	
+	//更新
 	player->Update();
 	viewProjection->UpdateMatrix();
 }
