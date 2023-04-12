@@ -57,7 +57,7 @@ void GameScene::Draw() {
 // 3Dオブジェクト描画前処理
 	Object3d::PreDraw(dxCommon->GetCommandList());
 
-	player->Draw(viewProjection);
+	/*player->Draw(viewProjection);*/
 
 	// 3Dオブジェクト描画後処理
 	Object3d::PostDraw();

@@ -82,7 +82,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 #pragma endregion 基盤システムの更新
 		
+		dxCommon->PreDraw();
 		gameScene->Draw();
+		dxCommon->PostDraw();
 	}
 
 #pragma region 最初のシーンの終了

@@ -298,9 +298,9 @@ void Model::LoadFromOBJInternal(const string& modelname)
 	// ファイルストリーム
 	std::ifstream file;
 	// .objファイルを開く
-	const string filename = modelname + ".obj"; // "triangle_mat.obj"
-	const string directoryPath = "Resources/" + modelname + "/"; // "Resources/triangle_mat/"
-	file.open(directoryPath + filename); // "Resources/triangle_mat/triangle_mat.obj"
+	const string filename = modelname + ".obj"; // "modelname.obj"
+	const string directoryPath = "Resources/" + modelname + "/"; // "Resources/modelname/"
+	file.open(directoryPath + filename); // "Resources/modelname.obj"
 	// ファイルオープン失敗をチェック
 	if (file.fail()) {
 		assert(0);
