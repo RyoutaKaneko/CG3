@@ -46,7 +46,9 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 void GameScene::Update() {
 	input->Update();
 
-	
+	if (input->PushKey(DIK_W)) {
+		player->SetPosition(player->GetPosition() + Vector3(0, 0, 0.5f));
+	}
 
 	//XV
 	player->Update();
