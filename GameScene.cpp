@@ -49,6 +49,9 @@ void GameScene::Update() {
 	if (input->PushKey(DIK_W)) {
 		player->SetPosition(player->GetPosition() + Vector3(0, 0, 0.5f));
 	}
+	if (input->PushKey(DIK_S)) {
+		player->SetPosition(player->GetPosition() + Vector3(0, 0, -0.5f));
+	}
 
 	//XV
 	player->Update();
