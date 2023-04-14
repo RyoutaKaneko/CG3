@@ -46,6 +46,8 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 void GameScene::Update() {
 	input->Update();
 
+	
+
 	//XV
 	player->Update();
 	viewProjection->UpdateMatrix();
