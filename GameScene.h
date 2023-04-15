@@ -34,16 +34,21 @@ private:
 	Sprite* sprite = new Sprite;
 	SpriteCommon spriteCommon_;
 	Sprite wood;
+	Sprite reimu;
 	//オブジェクトのポインタ
 	//3Dオブジェクト生成
 	Model* playerModel = nullptr;
 	Object3d* player = nullptr;
+	Model* testModel = nullptr;
+	Object3d* test = nullptr;
 	//カメラ
 	ViewProjection* viewProjection = nullptr;
 	XMViewProjection* xmViewProjection = nullptr;
 	//パーティクル
 	Particle* particle = nullptr;
 	ParticleManager* pm = nullptr;
+	Particle* particle_ = nullptr;
+	ParticleManager* pm_ = nullptr;
 	
 
 };
