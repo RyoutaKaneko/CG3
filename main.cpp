@@ -12,28 +12,12 @@
 #include<dinput.h>
 #include<DirectXTex.h>
 #include "GameScene.h"
+#include "ParticleManager.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 #pragma comment(lib,"dxguid.lib")
 
 using namespace Microsoft::WRL;
-
-//// ウィンドウプロシージャ
-//LRESULT WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
-//{
-//	//メッセージに応じてゲーム固有の処理を行う
-//	switch (msg)
-//	{
-//		//ウィンドウが破棄された
-//	case WM_DESTROY:
-//		//OSに対して、アプリの終了を伝える
-//		PostQuitMessage(0);
-//		return 0;
-//	}
-//
-//	//標準のメッセージ処理を行う
-//	return DefWindowProc(hwnd, msg, wparam, lparam);
-//}
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -61,6 +45,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Object3d::StaticInitialize(dxCommon->GetDevice(), WinApp::window_width, WinApp::window_height);
 	// ビュープロジェクションの初期化
 	ViewProjection::StaticInitialize(dxCommon->GetDevice());
+	// パーティクル静的初期化
+	ParticleManager::StaticInitialize(dxCommon->GetDevice());
 #pragma endregion 基盤システムの初期化
 
 	//ゲームシーン

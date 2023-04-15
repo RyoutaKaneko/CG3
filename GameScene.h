@@ -9,6 +9,8 @@
 #include <random>
 #include "Model.h"
 #include "ViewProjection.h"
+#include "Particle.h"
+#include "ParticleManager.h"
 
 class GameScene {
 public:
@@ -38,6 +40,10 @@ private:
 	Object3d* player = nullptr;
 	//カメラ
 	ViewProjection* viewProjection = nullptr;
+	XMViewProjection* xmViewProjection = nullptr;
+	//パーティクル
+	Particle* particle = nullptr;
+	ParticleManager* pm = nullptr;
 	
 
 };

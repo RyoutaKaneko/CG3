@@ -241,7 +241,7 @@ void main(
 		// 中心からオフセットをビルボード回転（モデル座標）
 		//float4 offset = mul(matBillboard, offset_array[i]);
 		//中心からのオフセットをスケーリング
-		float4 offset = offset_array[i]*input[0].scale;
+		float4 offset = offset_array[i] * input[0].scale;
 		// 中心からのオフセットをビルボード回転（モデル座標）
 		offset = mul(matBillboard, offset);
 		// オフセット分ずらす（ワールド座標）
