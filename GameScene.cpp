@@ -9,6 +9,7 @@ GameScene::~GameScene() {
 
 ///-----•Ï”‚Ì‰Šú‰»-----///
 void GameScene::Initialize(SpriteCommon& spriteCommon) {
+	//Šî”Õ
 	dxCommon = DirectXCommon::GetInstance();
 	winApp = WinApp::GetInstance();
 	input = Input::GetInstance();
