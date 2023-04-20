@@ -97,7 +97,7 @@ void GameScene::Update() {
 		pm_->Fire(particle_, 30, 0.2f, 0, 1, { 8.0f, 0.0f });
 	}
 
-	//ƒJƒƒ‰
+	//ƒJƒƒ‰ 
 	if (input->PushKey(DIK_RIGHT)) {
 		viewProjection->eye += Vector3(0.1f, 0, 0);
 	}
