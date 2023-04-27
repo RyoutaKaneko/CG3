@@ -342,3 +342,7 @@ Vector3 operator*(const Vector3& v, const Matrix4& m)
 	};
 	return result;
 }
+
+float Matrix4::ConvertToRadian(float rad) {
+	return rad * (3.141592 / 180);
+}

@@ -53,6 +53,8 @@ public:
 
 	Matrix4 operator*(const Matrix4& m1);
 
+	static float ConvertToRadian(float rad);
+
 };
 
 	// 2項演算子オーバーロード

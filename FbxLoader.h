@@ -4,6 +4,8 @@
 #include "d3d12.h"
 #include "d3dx12.h"
 #include <string>
+#include "FbxModel.h"
+#include "Matrix4.h"
 
 class FbxLoader {
 	//エイリアス
@@ -20,6 +22,9 @@ public:
 
 	//fbxファイルからモデル読み込み
 	void LoadModelFlomFile(const string& modelName);
+
+	//ノード解析
+	void ParseNodeRecursive(FbxModel* model, FbxNode* fbxNode,Node* parent = nullptr);
 
 	//後始末
 	void Finalize();
