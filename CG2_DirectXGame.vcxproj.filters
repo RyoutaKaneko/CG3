@@ -108,6 +108,9 @@
     <ClCompile Include="XMViewProjection.cpp">
       <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
+    <ClCompile Include="FbxLoader.cpp">
+      <Filter>ソース ファイル\3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\Basic.hlsli">
@@ -202,6 +205,9 @@
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
     <ClInclude Include="XMViewProjection.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxLoader.h">
       <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
   </ItemGroup>

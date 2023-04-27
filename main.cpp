@@ -13,6 +13,7 @@
 #include<DirectXTex.h>
 #include "GameScene.h"
 #include "ParticleManager.h"
+#include "FbxLoader.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 #pragma comment(lib,"dxguid.lib")
@@ -47,6 +48,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	ViewProjection::StaticInitialize(dxCommon->GetDevice());
 	// パーティクル静的初期化
 	ParticleManager::StaticInitialize(dxCommon->GetDevice());
+	//fbx汎用初期化
+	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
 #pragma endregion 基盤システムの初期化
 
 	//ゲームシーン
@@ -83,6 +86,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	//3Dオブジェクト解放
 	delete gameScene;
+	FbxLoader::GetInstance()->Finalize();
 
 	//WindowsAPIの終了処理
 	winApp->Finalize();

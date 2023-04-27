@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "FbxLoader.h"
 
 GameScene::GameScene() {
 	
@@ -70,6 +71,9 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	//カメラをセット
 	pm->SetXMViewProjection(xmViewProjection);
 	pm_->SetXMViewProjection(xmViewProjection);
+
+	//モデル名を指定して読み込み
+	FbxLoader::GetInstance()->LoadModelFlomFile("cube");
 }
 
 ///-----更新処理-----///

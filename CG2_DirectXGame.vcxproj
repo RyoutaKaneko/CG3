@@ -162,6 +162,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="WorldTransform.cpp" />
     <ClCompile Include="XMViewProjection.cpp" />
+    <ClCompile Include="FbxLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -248,6 +249,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="WorldTransform.h" />
     <ClInclude Include="XMViewProjection.h" />
+    <ClInclude Include="FbxLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
