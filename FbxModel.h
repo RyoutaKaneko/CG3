@@ -1,10 +1,15 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Vector2.h"
+#include "Vector3.h"
 #include "Vector4.h"
 #include "Matrix4.h"
-#include "Vector2.h"
 #include <DirectXTex.h>
+#include <Windows.h>
+#include <wrl.h>
+#include <d3d12.h>
+#include <d3dx12.h>
 
 //ノード
 struct Node {
@@ -34,6 +39,16 @@ public:
 		Vector3 normal;
 		Vector2 uv;
 	};
+private://エイリアス
+	template <class T> using ComPtr =
+		Microsoft::WRL::ComPtr<T>;
+	//DirectX::を省略
+	using TexMetadata = DirectX::TexMetadata;
+	using sSratchImage = DirectX::ScratchImage;
+	//std::を省略
+	using string = std::string;
+	template <class T> using vector =
+		std::vector<T>;
 private:
 	//モデルの名前
 	std::string name;
@@ -53,4 +68,21 @@ private:
 	DirectX::TexMetadata metaData = {};
 	//スクラッチイメージ
 	DirectX::ScratchImage scratchImg = {};
+	//頂点バッファ
+	ComPtr<ID3D12Resource> vertBuff;
+	//インデックスバッファ
+	ComPtr<ID3D12Resource> indexBuff;
+	//テクスチャバッファ
+	ComPtr<ID3D12Resource> texBuff;
+	//頂点バッファビュー
+	D3D12_VERTEX_BUFFER_VIEW vbView = {};
+	//インデックスバッファビュー
+	D3D12_INDEX_BUFFER_VIEW ibView = {};
+	//SRV用デスクリプターヒープ
+	ComPtr<ID3D12DescriptorHeap> descHeapSRV;
+
+public://関数
+	void CreateBuffers(ID3D12Device* device);
+	//描画
+	void Draw(ID3D12GraphicsCommandList* cmdList);
 };

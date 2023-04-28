@@ -56,6 +56,9 @@ void FbxLoader::LoadModelFlomFile(const string& modelName) {
 
 	ParseNodeRecursive(model, fbxScene->GetRootNode());
 	fbxScene->Destroy();
+
+	//バッファ生成
+	model->CreateBuffers(device);
 }
 
 //ノード解析
