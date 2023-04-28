@@ -3,6 +3,8 @@
 #include <vector>
 #include "Vector4.h"
 #include "Matrix4.h"
+#include "Vector2.h"
+#include <DirectXTex.h>
 
 //ノード
 struct Node {
@@ -25,9 +27,30 @@ struct Node {
 class FbxModel {
 public:
 	friend class FbxLoader;
+//サブクラス
+public:
+	struct VertexPosNormalUv {
+		Vector3 pos;
+		Vector3 normal;
+		Vector2 uv;
+	};
 private:
 	//モデルの名前
 	std::string name;
 	//ノード配列
 	std::vector<Node> nodes;
+	//メッシュを持つノード
+	Node* meshNode = nullptr;
+	//頂点データ
+	std::vector<VertexPosNormalUv> vertices;
+	//頂点インデックス
+	std::vector<unsigned int>indices;
+	//アンビエント
+	Vector3 ambient = { 1,1,1 };
+	//ディフューズ
+	Vector3 diffuse = { 1,1,1 };
+	//テクスチャメタデータ
+	DirectX::TexMetadata metaData = {};
+	//スクラッチイメージ
+	DirectX::ScratchImage scratchImg = {};
 };

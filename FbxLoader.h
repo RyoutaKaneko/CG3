@@ -6,6 +6,7 @@
 #include <string>
 #include "FbxModel.h"
 #include "Matrix4.h"
+#include "DirectXTex.h"
 
 class FbxLoader {
 	//エイリアス
@@ -25,6 +26,17 @@ public:
 
 	//ノード解析
 	void ParseNodeRecursive(FbxModel* model, FbxNode* fbxNode,Node* parent = nullptr);
+
+	//メッシュ解析
+	void ParseMesh(FbxModel* model, FbxNode* fbxNode);
+	//サブ
+	void ParseMeshVertices(FbxModel* model, FbxMesh* fbxMesh);
+	void ParseMeshFaces(FbxModel* model, FbxMesh* fbxMesh);
+	void ParseMatrial(FbxModel* model, FbxNode* fbxNode);
+	void LoadTexture(FbxModel* model, const std::string& fullPath);
+
+	//ファイル名抽出
+	std::string ExtracFileName(const std::string& path);
 
 	//後始末
 	void Finalize();
@@ -47,6 +59,9 @@ private:
 	//コピー代入演算子を禁止
 	void operator=(const FbxLoader& obj) = delete;
 
+//private静的関数
+private:
+	static const string defaultTextureFileName;
 public:
 	static const string baseDirectory;
 };
