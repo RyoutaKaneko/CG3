@@ -85,4 +85,6 @@ public://ŠÖ”
 	void CreateBuffers(ID3D12Device* device);
 	//•`‰æ
 	void Draw(ID3D12GraphicsCommandList* cmdList);
+	//ƒ‚ƒfƒ‹‚Ì•ÏŒ`s—ñŽæ“¾
+	const Matrix4& GetModelTransform() { return meshNode->globalTransform; }
 };
