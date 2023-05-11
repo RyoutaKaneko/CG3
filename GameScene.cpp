@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "FbxLoader.h"
+#include "FbxObject3d.h"
 
 GameScene::GameScene() {
 	
@@ -29,9 +30,15 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	viewProjection = new ViewProjection;
 	viewProjection->Initialize();
 	viewProjection->eye = { 0, 3, -30 };
-	viewProjection->target = { 0, 0, -15 };
+	viewProjection->target = { 0, 20, -100 };
 
 	xmViewProjection = new XMViewProjection;
+
+	//FbxObjectの静的初期化
+	//カメラをセット
+	FbxObject3d::SetCamera(viewProjection);
+	//グラフィックスパイプラインを初期化
+	FbxObject3d::CreateGraphicsPipeline();
 
 	// スプライトの初期化
 	// スプライト
@@ -73,7 +80,10 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	pm_->SetXMViewProjection(xmViewProjection);
 
 	//モデル名を指定して読み込み
-	FbxLoader::GetInstance()->LoadModelFlomFile("cube");
+	model = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
+	obj = new FbxObject3d;
+	obj->Initialize();
+	obj->SetModel(model);
 }
 
 ///-----更新処理-----///
@@ -129,6 +139,7 @@ void GameScene::Update() {
 	viewProjection->UpdateMatrix();
 	pm->Update();
 	pm_->Update();
+	obj->Update();
 }
 
 void GameScene::Draw() {
@@ -142,6 +153,18 @@ void GameScene::Draw() {
 
 	// 3Dオブジェクト描画後処理
 	Object3d::PostDraw();
+
+#pragma endregion
+
+#pragma region FBX3Dオブジェクト描画
+
+	// 3Dオブジェクト描画前処理
+	FbxObject3d::PreDraw(dxCommon->GetCommandList());
+
+	obj->Draw(dxCommon->GetCommandList());
+
+	// 3Dオブジェクト描画後処理
+	FbxObject3d::PostDraw();
 
 #pragma endregion
 

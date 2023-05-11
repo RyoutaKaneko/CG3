@@ -22,7 +22,7 @@ public:
 	void Initialize(ID3D12Device* device);
 
 	//fbxファイルからモデル読み込み
-	void LoadModelFlomFile(const string& modelName);
+	FbxModel* LoadModelFlomFile(const string& modelName);
 
 	//ノード解析
 	void ParseNodeRecursive(FbxModel* model, FbxNode* fbxNode,Node* parent = nullptr);

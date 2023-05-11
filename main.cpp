@@ -14,6 +14,7 @@
 #include "GameScene.h"
 #include "ParticleManager.h"
 #include "FbxLoader.h"
+#include "FbxObject3d.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 #pragma comment(lib,"dxguid.lib")
@@ -50,6 +51,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	ParticleManager::StaticInitialize(dxCommon->GetDevice());
 	//fbx汎用初期化
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
+	//
+	FbxObject3d::StaticInitialize(dxCommon->GetDevice());
 #pragma endregion 基盤システムの初期化
 
 	//ゲームシーン
