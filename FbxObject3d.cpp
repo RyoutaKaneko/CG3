@@ -12,6 +12,7 @@ ID3D12GraphicsCommandList* FbxObject3d::cmdList = nullptr;
 
 void FbxObject3d::CreateGraphicsPipeline()
 {
+
 	HRESULT result = S_FALSE;
 	ComPtr<ID3DBlob> vsBlob; // 頂点シェーダオブジェクト
 	ComPtr<ID3DBlob> psBlob;	// ピクセルシェーダオブジェクト
@@ -91,6 +92,8 @@ void FbxObject3d::CreateGraphicsPipeline()
 	gpipeline.SampleMask = D3D12_DEFAULT_SAMPLE_MASK; // 標準設定
 	// ラスタライザステート
 	gpipeline.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+	//gpipeline.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
+	//gpipeline.RasterizerState.FillMode = D3D12_FILL_MODE_WIREFRAME;
 	// デプスステンシルステート
 	gpipeline.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
 
@@ -130,9 +133,9 @@ void FbxObject3d::CreateGraphicsPipeline()
 	// ルートパラメータ
 	CD3DX12_ROOT_PARAMETER rootparams[4];
 	rootparams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
-	rootparams[1].InitAsDescriptorTable(1, &descRangeSRV, D3D12_SHADER_VISIBILITY_ALL);
-	/*rootparams[2].InitAsConstantBufferView(2, 0, D3D12_SHADER_VISIBILITY_ALL);
-	rootparams[3].InitAsDescriptorTable(1, &descRangeSRV, D3D12_SHADER_VISIBILITY_ALL);*/
+	rootparams[1].InitAsConstantBufferView(1, 0, D3D12_SHADER_VISIBILITY_ALL);
+	rootparams[2].InitAsConstantBufferView(2, 0, D3D12_SHADER_VISIBILITY_ALL);
+	rootparams[3].InitAsDescriptorTable(1, &descRangeSRV, D3D12_SHADER_VISIBILITY_ALL);
 
 	// スタティックサンプラー
 	CD3DX12_STATIC_SAMPLER_DESC samplerDesc = CD3DX12_STATIC_SAMPLER_DESC(0);
@@ -153,6 +156,7 @@ void FbxObject3d::CreateGraphicsPipeline()
 	// グラフィックスパイプラインの生成
 	result = device->CreateGraphicsPipelineState(&gpipeline, IID_PPV_ARGS(&pipelinestate));
 	assert(SUCCEEDED(result));
+
 }
 
 void FbxObject3d::Initialize()
@@ -173,30 +177,45 @@ void FbxObject3d::Initialize()
 		nullptr,
 		IID_PPV_ARGS(&constBuffTransform)
 	);
-	
-	worldTransform->Initialize();
+
+	worldTransform.Initialize();
 }
 
 void FbxObject3d::Update()
 {
 	// ワールドトランスフォームの行列更新と転送
-	worldTransform->UpdateMatrix();
+	worldTransform.UpdateMatrix();
 }
 
-void FbxObject3d::Draw(ID3D12GraphicsCommandList* cmdList)
+void FbxObject3d::Draw(ViewProjection* viewProjection)
 {
-	// nullptrチェック
-	if (model == nullptr) {
-		return;
-	}
-	//パイプラインステートの設定
-	cmdList->SetPipelineState(pipelinestate.Get());
-	//ルートシグネチャの設定
-	cmdList->SetComputeRootSignature(rootsignature.Get());
-	//プリミティブ形状を設定
-	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//// nullptrチェック
+	//if (model == nullptr) {
+	//	return;
+	//}
+	////パイプラインステートの設定
+	//cmdList->SetPipelineState(pipelinestate.Get());
+	////ルートシグネチャの設定
+	//cmdList->SetComputeRootSignature(rootsignature.Get());
+	////プリミティブ形状を設定
+	//cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//// 定数バッファビューをセット
+	//cmdList->SetGraphicsRootConstantBufferView(0, worldTransform.GetBuff()->GetGPUVirtualAddress());
+
+	//// モデルを描画
+	//model->Draw(cmdList);
+		// nullptrチェック
+	assert(device);
+	assert(FbxObject3d::cmdList);
+
+	// モデルがセットされていなければ描画をスキップ
+	if (model == nullptr) return;
+
 	// 定数バッファビューをセット
-	cmdList->SetGraphicsRootConstantBufferView(0, worldTransform->GetBuff()->GetGPUVirtualAddress());
+	cmdList->SetGraphicsRootConstantBufferView(0, worldTransform.GetBuff()->GetGPUVirtualAddress());
+
+	// ビュープロジェクション変換データ定数バッファビューをセット
+	cmdList->SetGraphicsRootConstantBufferView(1, viewProjection->GetBuff()->GetGPUVirtualAddress());
 
 	// モデルを描画
 	model->Draw(cmdList);
@@ -220,6 +239,14 @@ void FbxObject3d::PreDraw(ID3D12GraphicsCommandList* cmdList)
 
 	// コマンドリストをセット
 	FbxObject3d::cmdList = cmdList;
+
+
+	// パイプラインステートの設定
+	cmdList->SetPipelineState(pipelinestate.Get());
+	// ルートシグネチャの設定
+	cmdList->SetGraphicsRootSignature(rootsignature.Get());
+	// プリミティブ形状を設定
+	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 }
 

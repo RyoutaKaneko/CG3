@@ -43,7 +43,7 @@ public://メンバ関数
 
 	void SetModel(FbxModel* model) { this->model = model; }
 
-	void Draw(ID3D12GraphicsCommandList* cmdList);
+	void Draw(ViewProjection* viewProjection);
 protected://メンバ変数
 	ComPtr<ID3D12Resource> constBuffTransform;
 private:
@@ -52,6 +52,6 @@ private:
 	// コマンドリスト
 	static ID3D12GraphicsCommandList* cmdList;
 
-	WorldTransform* worldTransform = nullptr;
+	WorldTransform worldTransform;
 	FbxModel* model = nullptr;
 };
