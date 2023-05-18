@@ -31,7 +31,7 @@ void FbxLoader::Initialize(ID3D12Device* device) {
 }
 
 //モデル読み込み
-void FbxLoader::LoadModelFlomFile(const string& modelName) {
+FbxModel* FbxLoader::LoadModelFlomFile(const string& modelName) {
 	const string directoryPath = baseDirectory + modelName + "/";
 	const string fileName = modelName + ".fbx";
 	//連結
@@ -59,6 +59,9 @@ void FbxLoader::LoadModelFlomFile(const string& modelName) {
 
 	//バッファ生成
 	model->CreateBuffers(device);
+	assert(model->indices.size());
+
+	return model;
 }
 
 //ノード解析

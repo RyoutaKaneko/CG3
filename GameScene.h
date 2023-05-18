@@ -11,6 +11,8 @@
 #include "ViewProjection.h"
 #include "Particle.h"
 #include "ParticleManager.h"
+#include "FbxObject3d.h"
+#include "FbxModel.h"
 
 class GameScene {
 public:
@@ -49,6 +51,10 @@ private:
 	ParticleManager* pm = nullptr;
 	Particle* particle_ = nullptr;
 	ParticleManager* pm_ = nullptr;
+
+	//FBX
+	FbxModel* model = nullptr;
+	FbxObject3d* obj = nullptr;
 	
 
 };

@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "FbxLoader.h"
+#include "FbxObject3d.h"
 
 GameScene::GameScene() {
 	
@@ -19,7 +20,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	playerModel = Model::LoadFromOBJ("triangle_mat");
 	player = Object3d::Create();
 	player->SetModel(playerModel);
-	player->SetPosition(Vector3(0, 0, -25));
+	player->SetPosition(Vector3(0, 0, 0));
 	//test
 	testModel = Model::LoadFromOBJ("ironSphere");
 	test = Object3d::Create();
@@ -29,9 +30,15 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	viewProjection = new ViewProjection;
 	viewProjection->Initialize();
 	viewProjection->eye = { 0, 3, -30 };
-	viewProjection->target = { 0, 0, -15 };
+	viewProjection->target = { 0, 0, 0 };
 
 	xmViewProjection = new XMViewProjection;
+
+	//FbxObjectの静的初期化
+	//カメラをセット
+	FbxObject3d::SetCamera(viewProjection);
+	//グラフィックスパイプラインを初期化
+	FbxObject3d::CreateGraphicsPipeline();
 
 	// スプライトの初期化
 	// スプライト
@@ -73,7 +80,12 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	pm_->SetXMViewProjection(xmViewProjection);
 
 	//モデル名を指定して読み込み
-	FbxLoader::GetInstance()->LoadModelFlomFile("cube");
+	obj = new FbxObject3d;
+	obj->Initialize();
+	model = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
+	obj->SetModel(model);
+	obj->SetPosition(Vector3(1, 0, -10));
+	obj->SetScale(Vector3(0.01, 0.01, 0.01));
 }
 
 ///-----更新処理-----///
@@ -108,6 +120,12 @@ void GameScene::Update() {
 	if (input->PushKey(DIK_LEFT)) {
 		viewProjection->eye += Vector3(-0.1f, 0, 0);
 	}
+	if (input->PushKey(DIK_UP)) {
+		viewProjection->eye += Vector3(0, 0, 0.1f);
+	}
+	if (input->PushKey(DIK_DOWN)) {
+		viewProjection->eye += Vector3(0, 0, -0.1f);
+	}
 	//視点移動
 	if (input->PushKey(DIK_J)) {
 		viewProjection->target += Vector3(-0.1f, 0, 0);
@@ -129,6 +147,7 @@ void GameScene::Update() {
 	viewProjection->UpdateMatrix();
 	pm->Update();
 	pm_->Update();
+	obj->Update();
 }
 
 void GameScene::Draw() {
@@ -142,6 +161,18 @@ void GameScene::Draw() {
 
 	// 3Dオブジェクト描画後処理
 	Object3d::PostDraw();
+
+#pragma endregion
+
+#pragma region FBX3Dオブジェクト描画
+
+	// 3Dオブジェクト描画前処理
+	FbxObject3d::PreDraw(dxCommon->GetCommandList());
+
+	obj->Draw(viewProjection);
+
+	// 3Dオブジェクト描画後処理
+	FbxObject3d::PostDraw();
 
 #pragma endregion
 
