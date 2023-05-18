@@ -44,6 +44,16 @@ public://メンバ関数
 	void SetModel(FbxModel* model) { this->model = model; }
 
 	void Draw(ViewProjection* viewProjection);
+
+	const Vector3& GetPosition() const { return worldTransform.position_; }
+	void SetPosition(const Vector3& position) { this->worldTransform.position_ = position; }
+	// オブジェクトの大きさ
+	void SetScale(const Vector3& scale) { this->worldTransform.scale_ = scale; }
+	const Vector3& GetScale() const { return worldTransform.scale_; }
+	// オブジェクトの回転
+	void SetRotation(const Vector3& rotation) { this->worldTransform.rotation_ = rotation; }
+	const Vector3& GetRotation() const { return worldTransform.rotation_; }
+
 protected://メンバ変数
 	ComPtr<ID3D12Resource> constBuffTransform;
 private:

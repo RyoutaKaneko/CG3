@@ -189,21 +189,6 @@ void FbxObject3d::Update()
 
 void FbxObject3d::Draw(ViewProjection* viewProjection)
 {
-	//// nullptrチェック
-	//if (model == nullptr) {
-	//	return;
-	//}
-	////パイプラインステートの設定
-	//cmdList->SetPipelineState(pipelinestate.Get());
-	////ルートシグネチャの設定
-	//cmdList->SetComputeRootSignature(rootsignature.Get());
-	////プリミティブ形状を設定
-	//cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	//// 定数バッファビューをセット
-	//cmdList->SetGraphicsRootConstantBufferView(0, worldTransform.GetBuff()->GetGPUVirtualAddress());
-
-	//// モデルを描画
-	//model->Draw(cmdList);
 		// nullptrチェック
 	assert(device);
 	assert(FbxObject3d::cmdList);
@@ -216,7 +201,6 @@ void FbxObject3d::Draw(ViewProjection* viewProjection)
 
 	// ビュープロジェクション変換データ定数バッファビューをセット
 	cmdList->SetGraphicsRootConstantBufferView(1, viewProjection->GetBuff()->GetGPUVirtualAddress());
-
 	// モデルを描画
 	model->Draw(cmdList);
 }

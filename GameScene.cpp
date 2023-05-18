@@ -20,7 +20,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	playerModel = Model::LoadFromOBJ("triangle_mat");
 	player = Object3d::Create();
 	player->SetModel(playerModel);
-	player->SetPosition(Vector3(0, 0, -25));
+	player->SetPosition(Vector3(0, 0, 0));
 	//test
 	testModel = Model::LoadFromOBJ("ironSphere");
 	test = Object3d::Create();
@@ -30,7 +30,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	viewProjection = new ViewProjection;
 	viewProjection->Initialize();
 	viewProjection->eye = { 0, 3, -30 };
-	viewProjection->target = { 0, 20, -100 };
+	viewProjection->target = { 0, 0, 0 };
 
 	xmViewProjection = new XMViewProjection;
 
@@ -80,10 +80,12 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	pm_->SetXMViewProjection(xmViewProjection);
 
 	//モデル名を指定して読み込み
-	model = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
 	obj = new FbxObject3d;
 	obj->Initialize();
+	model = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
 	obj->SetModel(model);
+	obj->SetPosition(Vector3(1, 0, -10));
+	obj->SetScale(Vector3(0.01, 0.01, 0.01));
 }
 
 ///-----更新処理-----///
@@ -117,6 +119,12 @@ void GameScene::Update() {
 	}
 	if (input->PushKey(DIK_LEFT)) {
 		viewProjection->eye += Vector3(-0.1f, 0, 0);
+	}
+	if (input->PushKey(DIK_UP)) {
+		viewProjection->eye += Vector3(0, 0, 0.1f);
+	}
+	if (input->PushKey(DIK_DOWN)) {
+		viewProjection->eye += Vector3(0, 0, -0.1f);
 	}
 	//視点移動
 	if (input->PushKey(DIK_J)) {

@@ -59,6 +59,7 @@ FbxModel* FbxLoader::LoadModelFlomFile(const string& modelName) {
 
 	//バッファ生成
 	model->CreateBuffers(device);
+	assert(model->indices.size());
 
 	return model;
 }
