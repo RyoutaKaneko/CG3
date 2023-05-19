@@ -18,7 +18,7 @@ private: // エイリアス
 
 public: // サブクラス
 	// 頂点データ構造体
-	struct VertexPosNormalUv
+	struct VertexPosNormalUvSkin
 	{
 		Vector3 pos; // xyz座標
 		Vector3 normal; // 法線ベクトル
@@ -95,7 +95,7 @@ private: // 静的メンバ変数
 	// デバイス
 	static ID3D12Device* device;
 	// 頂点データ配列
-	std::vector<VertexPosNormalUv> vertices;
+	std::vector<VertexPosNormalUvSkin> vertices;
 	// 頂点インデックス配列
 	std::vector<unsigned short> indices;
 	// マテリアル
