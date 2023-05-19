@@ -10,6 +10,7 @@
 #include <wrl.h>
 #include <d3d12.h>
 #include <d3dx12.h>
+#include <fbxsdk.h>
 
 //ノード
 struct Node {
@@ -32,13 +33,31 @@ struct Node {
 class FbxModel {
 public:
 	friend class FbxLoader;
+public://定数
+	//ボーンインデックスの最大数
+	static const int MAX_BONE_INDICES = 4;
 //サブクラス
 public:
-	struct VertexPosNormalUv {
+	struct VertexPosNormalUvSkin {
 		Vector3 pos;
 		Vector3 normal;
 		Vector2 uv;
+		UINT boneIndex[MAX_BONE_INDICES];
+		float boneWeight[MAX_BONE_INDICES];
 	};
+	//ボーン
+	struct Bone {
+		std::string name;
+		//初期姿勢の逆行列
+		Matrix4 inInitialPose;
+		//クラスター
+		FbxCluster* fbxCluster;
+		//コンストラクタ
+		Bone(const std::string& name) {
+			this->name = name;
+		}
+	};
+
 private://エイリアス
 	template <class T> using ComPtr =
 		Microsoft::WRL::ComPtr<T>;
@@ -57,7 +76,7 @@ private:
 	//メッシュを持つノード
 	Node* meshNode = nullptr;
 	//頂点データ
-	std::vector<VertexPosNormalUv> vertices;
+	std::vector<VertexPosNormalUvSkin> vertices;
 	//頂点インデックス
 	std::vector<unsigned int>indices;
 	//アンビエント
@@ -80,11 +99,19 @@ private:
 	D3D12_INDEX_BUFFER_VIEW ibView = {};
 	//SRV用デスクリプターヒープ
 	ComPtr<ID3D12DescriptorHeap> descHeapSRV;
+	//ボーン配列
+	std::vector<Bone> bones;
+	//FBXシーン
+	FbxScene* fbxScene = nullptr;
 
 public://関数
+	~FbxModel();
 	void CreateBuffers(ID3D12Device* device);
 	//描画
 	void Draw(ID3D12GraphicsCommandList* cmdList);
 	//モデルの変形行列取得
 	const Matrix4& GetModelTransform() { return meshNode->globalTransform; }
+	//getter
+	std::vector<Bone>& GetBones() { return bones; }
+	FbxScene* GetFbxScene() { return fbxScene; }
 };

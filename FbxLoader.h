@@ -35,11 +35,16 @@ public:
 	void ParseMatrial(FbxModel* model, FbxNode* fbxNode);
 	void LoadTexture(FbxModel* model, const std::string& fullPath);
 
+	static void ConvertMatrixFromFbx(Matrix4 dst, const FbxAMatrix& src);
+
 	//ファイル名抽出
 	std::string ExtracFileName(const std::string& path);
 
 	//後始末
 	void Finalize();
+
+	//スキニング情報の読み取り
+	void ParseSkin(FbxModel* model, FbxMesh* fbxMesh);
 
 private:
 	//D3D12デバイス

@@ -329,7 +329,7 @@ void Model::LoadFromOBJInternal(const string& modelname)
 			// 座標データに追加
 			positions.emplace_back(position);
 			// 頂点データに追加
-			/*VertexPosNormalUv vertex{};
+			/*VertexPosNormalUvSkin vertex{};
 			vertex.pos = position;
 			vertices.emplace_back(vertex);*/
 		}
@@ -348,7 +348,7 @@ void Model::LoadFromOBJInternal(const string& modelname)
 				index_stream.seekg(1, ios_base::cur); // スラッシュを飛ばす
 				index_stream >> indexNormal;
 				// 頂点データの追加
-				VertexPosNormalUv vertex{};
+				VertexPosNormalUvSkin vertex{};
 				vertex.pos = positions[indexPosition - 1];
 				vertex.normal = normals[indexNormal - 1];
 				vertex.uv = texcoords[indexTexcoord - 1];
@@ -422,10 +422,10 @@ void Model::CreateBuffers()
 {
 	HRESULT result = S_FALSE;
 
-	std::vector<VertexPosNormalUv> realVertices;
+	std::vector<VertexPosNormalUvSkin> realVertices;
 
 	/*UINT sizeVB = static_cast<UINT>(sizeof(vertices));*/
-	UINT sizeVB = static_cast<UINT>(sizeof(VertexPosNormalUv) * vertices.size());
+	UINT sizeVB = static_cast<UINT>(sizeof(VertexPosNormalUvSkin) * vertices.size());
 
 	// ヒーププロパティ
 	CD3DX12_HEAP_PROPERTIES heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
@@ -439,7 +439,7 @@ void Model::CreateBuffers()
 	assert(SUCCEEDED(result));
 
 	// 頂点バッファへのデータ転送
-	VertexPosNormalUv* vertMap = nullptr;
+	VertexPosNormalUvSkin* vertMap = nullptr;
 	result = vertBuff->Map(0, nullptr, (void**)&vertMap);
 	if (SUCCEEDED(result)) {
 		/*memcpy(vertMap, vertices, sizeof(vertices));*/
