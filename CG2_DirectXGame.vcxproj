@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)DirectXTex;C:\Users\since\source\repos\MyEngine\lib\fbx_sdk\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\since\source\repos\MyEngine\lib\fbx_sdk\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\since\source\repos\MyEngine\External\DirectXTex\include;C:\Users\since\source\repos\MyEngine\External\fbx_sdk\include;C:\Users\since\source\repos\MyEngine\External\DirectXTex\lib\Debug;C:\Users\since\source\repos\MyEngine\External\fbx_sdk\lib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\since\source\repos\MyEngine\External\fbx_sdk\lib;C:\Users\since\source\repos\MyEngine\External\DirectXTex\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)DirectXTex;C:\Users\since\source\repos\MyEngine\lib\fbx_sdk\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\since\source\repos\MyEngine\lib\fbx_sdk\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\since\source\repos\MyEngine\External\DirectXTex\include;C:\Users\since\source\repos\MyEngine\External\fbx_sdk\include;C:\Users\since\source\repos\MyEngine\External\DirectXTex\lib\Debug;C:\Users\since\source\repos\MyEngine\External\fbx_sdk\lib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\since\source\repos\MyEngine\External\fbx_sdk\lib;C:\Users\since\source\repos\MyEngine\External\DirectXTex\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -125,7 +125,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libfbxsdk-md.lib;libxml2-md.lib;zlib-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk-md.lib;libxml2-md.lib;zlib-md.lib;DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,12 +137,14 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)app\platform;$(ProjectDir)app\scene;$(ProjectDir)engine\2d;$(ProjectDir)engine\3d;$(ProjectDir)engine\base;$(ProjectDir)engine\effect;$(ProjectDir)engine\math;$(ProjectDir)engine\scene;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -166,11 +168,6 @@
     <ClCompile Include="engine\3d\XMViewProjection.cpp" />
     <ClCompile Include="engine\3d\FbxLoader.cpp" />
     <ClCompile Include="engine\3d\FbxModel.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
-      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\Basic.hlsli" />
