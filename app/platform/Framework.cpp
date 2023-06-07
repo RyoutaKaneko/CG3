@@ -1,6 +1,6 @@
-#include "RLFramework.h"
+#include "Framework.h"
 
-void RLFramework::Run()
+void Framework::Run()
 {
 	// ゲームの初期化
 	Initialize();
@@ -24,7 +24,7 @@ void RLFramework::Run()
 	Finalize();
 }
 
-void RLFramework::Initialize()
+void Framework::Initialize()
 {
 	// WindowsAPIの初期化
 	winApp = WinApp::GetInstance();
@@ -37,53 +37,57 @@ void RLFramework::Initialize()
 	// 入力の初期化
 	input = Input::GetInstance();
 	input->Initialize(winApp);
-
-	// ImGuiの初期化
-	imGuiManager = new ImGuiManager();
-	imGuiManager->Initialize(dXCommon, winApp);
-
-	// ポストエフェクトの初期化
-	postEffect_ = PostEffect::GetInstance();
-	postEffect_->Initialize();
-
-	// 3Dオブジェクト静的初期化
+	//3Dオブジェクト静的初期化
 	Object3d::StaticInitialize(dXCommon->GetDevice(), WinApp::window_width, WinApp::window_height);
-
-	//レール描画静的初期化
-	Line::StaticInitialize(dXCommon->GetDevice());
-
-	// パーティクル静的初期化
-	ParticleManager::StaticInitialize(dXCommon->GetDevice());
-
 	// ビュープロジェクションの初期化
 	ViewProjection::StaticInitialize(dXCommon->GetDevice());
+	// パーティクル静的初期化
+	ParticleManager::StaticInitialize(dXCommon->GetDevice());
+	//fbx汎用初期化
+	FbxLoader::GetInstance()->Initialize(dXCommon->GetDevice());
+	//
+	FbxObject3d::StaticInitialize(dXCommon->GetDevice());
+#pragma endregion 基盤システムの初期化
 
+	//ゲームシーン
+	gameScene = new GameScene();
+	gameScene->Initialize(spriteCommon);
 }
 
-void RLFramework::Update()
+void Framework::Update()
 {
 	// Windowsのメッセージ処理
 	if (winApp->ProcessMessage()) {
 		// ゲームループを抜ける
 		endRequest_ = true;
 	}
-
+	gameScene->Update();
 	// 入力の更新
-	input->Update();
+	/*input->Update();*/
 }
 
-void RLFramework::Finalize()
+void Framework::Draw()
 {
-	// imguiの終了処理
-	imGuiManager->Finalize();
-	// imguiの解放
-	delete imGuiManager;
-	imGuiManager = nullptr;
+#pragma region ゲームシーン描画
 
+
+#pragma endregion
+
+#pragma region 描画
+	// 描画前処理
+	dXCommon->PreDraw();
+	//=== ゲームシーン描画 ===//
+	gameScene->Draw();
+	// 描画後処理
+	dXCommon->PostDraw();
+#pragma endregion
+}
+
+void Framework::Finalize()
+{
+	delete gameScene;
+	FbxLoader::GetInstance()->Finalize();
 	// WindowsAPIの終了処理
 	winApp->Finalize();
-	
-	// DirectX解放
-	dXCommon->fpsFixedFinalize();
 	
 }

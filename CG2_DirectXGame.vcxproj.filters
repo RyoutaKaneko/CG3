@@ -12,24 +12,6 @@
     <Filter Include="シェーダーファイル">
       <UniqueIdentifier>{0ec641aa-dd1b-4500-8535-382c3827c462}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\GameScene">
-      <UniqueIdentifier>{5855e325-0d99-4092-bf18-d5326cc03816}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\2d">
-      <UniqueIdentifier>{5138cc02-99cf-4f0f-bdef-c2321640aa1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\3d">
-      <UniqueIdentifier>{b1febb7f-4466-46af-aa04-d3bf26ecbdbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Base">
-      <UniqueIdentifier>{df34dcd6-551e-4994-8c34-9780c07caa06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Math">
-      <UniqueIdentifier>{0025325f-b1da-41dc-8b22-11a61d4549fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Effect">
-      <UniqueIdentifier>{3285a7bc-7645-4c4c-a945-e02fdeece07d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル">
       <UniqueIdentifier>{8af0deee-6556-46f7-99ed-db9664eaec35}</UniqueIdentifier>
     </Filter>
@@ -63,6 +45,36 @@
     </Filter>
     <Filter Include="ソースファイル\Application\scene">
       <UniqueIdentifier>{0554bbb1-90f0-423b-b877-043bcaaa4592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Application">
+      <UniqueIdentifier>{2e619881-ee64-4395-9e02-763883744995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine">
+      <UniqueIdentifier>{dbabf37a-58f2-44ee-90e9-abbd314ee416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\Math">
+      <UniqueIdentifier>{0025325f-b1da-41dc-8b22-11a61d4549fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\GameScene">
+      <UniqueIdentifier>{5855e325-0d99-4092-bf18-d5326cc03816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\Effect">
+      <UniqueIdentifier>{3285a7bc-7645-4c4c-a945-e02fdeece07d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\Base">
+      <UniqueIdentifier>{df34dcd6-551e-4994-8c34-9780c07caa06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\3d">
+      <UniqueIdentifier>{b1febb7f-4466-46af-aa04-d3bf26ecbdbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\2d">
+      <UniqueIdentifier>{5138cc02-99cf-4f0f-bdef-c2321640aa1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Application\platform">
+      <UniqueIdentifier>{5d923fb2-2d4d-47e6-ac8a-df6b18b95a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Application\scene">
+      <UniqueIdentifier>{bcb6b033-1690-4db6-a7a7-f0e436506639}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +141,12 @@
     <ClCompile Include="engine\3d\FbxObject3d.cpp">
       <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
+    <ClCompile Include="app\scene\BaseScene.cpp">
+      <Filter>ソースファイル\Application\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="app\platform\Framework.cpp">
+      <Filter>ソースファイル\Application\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\Basic.hlsli">
@@ -184,64 +202,70 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\scene\GameScene.h">
-      <Filter>ヘッダー ファイル\GameScene</Filter>
+      <Filter>ヘッダー ファイル\Engine\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="engine\2d\Sprite.h">
-      <Filter>ヘッダー ファイル\2d</Filter>
+      <Filter>ヘッダー ファイル\Engine\2d</Filter>
     </ClInclude>
     <ClInclude Include="engine\base\Input.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>ヘッダー ファイル\Engine\Base</Filter>
     </ClInclude>
     <ClInclude Include="engine\base\WinApp.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>ヘッダー ファイル\Engine\Base</Filter>
     </ClInclude>
     <ClInclude Include="engine\base\DirectXCommon.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>ヘッダー ファイル\Engine\Base</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\Object3d.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\math\Matrix4.h">
-      <Filter>ヘッダー ファイル\Math</Filter>
+      <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\Model.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\2d\SpriteCommon.h">
-      <Filter>ヘッダー ファイル\2d</Filter>
+      <Filter>ヘッダー ファイル\Engine\2d</Filter>
     </ClInclude>
     <ClInclude Include="engine\math\Vector2.h">
-      <Filter>ヘッダー ファイル\Math</Filter>
+      <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="engine\math\Vector3.h">
-      <Filter>ヘッダー ファイル\Math</Filter>
+      <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="engine\math\Vector4.h">
-      <Filter>ヘッダー ファイル\Math</Filter>
+      <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\ViewProjection.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\WorldTransform.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\effect\Particle.h">
-      <Filter>ヘッダー ファイル\Effect</Filter>
+      <Filter>ヘッダー ファイル\Engine\Effect</Filter>
     </ClInclude>
     <ClInclude Include="engine\effect\ParticleManager.h">
-      <Filter>ヘッダー ファイル\Effect</Filter>
+      <Filter>ヘッダー ファイル\Engine\Effect</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\XMViewProjection.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\FbxLoader.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\FbxModel.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
     <ClInclude Include="engine\3d\FbxObject3d.h">
-      <Filter>ヘッダー ファイル\3d</Filter>
+      <Filter>ヘッダー ファイル\Engine\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="app\platform\Framework.h">
+      <Filter>ヘッダー ファイル\Application\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="app\scene\BaseScene.h">
+      <Filter>ヘッダー ファイル\Application\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
