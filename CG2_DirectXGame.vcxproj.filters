@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="ヘッダー ファイル">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -19,18 +15,6 @@
     <Filter Include="ヘッダー ファイル\GameScene">
       <UniqueIdentifier>{5855e325-0d99-4092-bf18-d5326cc03816}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\2d">
-      <UniqueIdentifier>{fa0a1209-5613-41f4-8336-a1b32e0bb017}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\3d">
-      <UniqueIdentifier>{c9e7a42e-e554-4643-b452-9d37989931a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Base">
-      <UniqueIdentifier>{ef959771-e341-4b66-b050-784b8557adaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Math">
-      <UniqueIdentifier>{c5ed0df1-7d03-4dcc-9231-f51298ef7b4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\2d">
       <UniqueIdentifier>{5138cc02-99cf-4f0f-bdef-c2321640aa1c}</UniqueIdentifier>
     </Filter>
@@ -43,79 +27,107 @@
     <Filter Include="ヘッダー ファイル\Math">
       <UniqueIdentifier>{0025325f-b1da-41dc-8b22-11a61d4549fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\GameScene">
-      <UniqueIdentifier>{6bef14bd-ffae-4ac6-9aee-6e82cdf7d056}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Effect">
-      <UniqueIdentifier>{436c057a-8f47-423b-8489-b9aceefb13ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Effect">
       <UniqueIdentifier>{3285a7bc-7645-4c4c-a945-e02fdeece07d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{8af0deee-6556-46f7-99ed-db9664eaec35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Application">
+      <UniqueIdentifier>{385839e5-4dc3-4305-b5f9-d2ff99e4d14b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\2d">
+      <UniqueIdentifier>{fa0a1209-5613-41f4-8336-a1b32e0bb017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\3d">
+      <UniqueIdentifier>{c9e7a42e-e554-4643-b452-9d37989931a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\Base">
+      <UniqueIdentifier>{ef959771-e341-4b66-b050-784b8557adaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\Math">
+      <UniqueIdentifier>{c5ed0df1-7d03-4dcc-9231-f51298ef7b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\GameScene">
+      <UniqueIdentifier>{6bef14bd-ffae-4ac6-9aee-6e82cdf7d056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine\Effect">
+      <UniqueIdentifier>{436c057a-8f47-423b-8489-b9aceefb13ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Application\platform">
+      <UniqueIdentifier>{46d387be-bb6f-44f2-acdc-483e1b27f2b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Application\scene">
+      <UniqueIdentifier>{0554bbb1-90f0-423b-b877-043bcaaa4592}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
     <ClCompile Include="engine\scene\GameScene.cpp">
-      <Filter>ソース ファイル\GameScene</Filter>
+      <Filter>ソースファイル\Engine\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="engine\base\DirectXCommon.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>ソースファイル\Engine\Base</Filter>
     </ClCompile>
     <ClCompile Include="engine\2d\Sprite.cpp">
-      <Filter>ソース ファイル\2d</Filter>
+      <Filter>ソースファイル\Engine\2d</Filter>
     </ClCompile>
     <ClCompile Include="engine\base\WinApp.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>ソースファイル\Engine\Base</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\Object3d.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\base\Input.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>ソースファイル\Engine\Base</Filter>
     </ClCompile>
     <ClCompile Include="engine\math\Matrix4.cpp">
-      <Filter>ソース ファイル\Math</Filter>
+      <Filter>ソースファイル\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="engine\math\Vector2.cpp">
-      <Filter>ソース ファイル\Math</Filter>
+      <Filter>ソースファイル\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="engine\math\Vector3.cpp">
-      <Filter>ソース ファイル\Math</Filter>
+      <Filter>ソースファイル\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="engine\math\Vector4.cpp">
-      <Filter>ソース ファイル\Math</Filter>
+      <Filter>ソースファイル\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\ViewProjection.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\2d\SpriteCommon.cpp">
-      <Filter>ソース ファイル\2d</Filter>
+      <Filter>ソースファイル\Engine\2d</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\WorldTransform.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\Model.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\effect\Particle.cpp">
-      <Filter>ソース ファイル\Effect</Filter>
+      <Filter>ソースファイル\Engine\Effect</Filter>
     </ClCompile>
     <ClCompile Include="engine\effect\ParticleManager.cpp">
-      <Filter>ソース ファイル\Effect</Filter>
+      <Filter>ソースファイル\Engine\Effect</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\XMViewProjection.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\FbxLoader.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\FbxModel.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\FbxObject3d.cpp">
-      <Filter>ソース ファイル\3d</Filter>
+      <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

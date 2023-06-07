@@ -80,11 +80,15 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)engine\external\DirectXTex\include;$(ProjectDir)engine\external\fbx_sdk\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)engine\external\fbx_sdk\lib;$(ProjectDir)engine\external\DirectXTex\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)..\Generated\Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)engine\external\DirectXTex\include;$(ProjectDir)engine\external\fbx_sdk\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)engine\external\fbx_sdk\lib;$(ProjectDir)engine\external\DirectXTex\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)..\Generated\Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
