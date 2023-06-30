@@ -356,7 +356,7 @@ void FbxLoader::ParseSkin(FbxModel* model, FbxMesh* fbxMesh) {
 		Matrix4 initialPose;
 		ConvertMatrixFromFbx(initialPose, fbxMat);
 		//初期姿勢行列の逆行列を得る
-		bone.inInitialPose.MakeInverse();
+		bone.inInitialPose = initialPose.MakeInverse();
 	}
 	//ボーン番号とスキンウェイトのペア
 	struct WeightSet {

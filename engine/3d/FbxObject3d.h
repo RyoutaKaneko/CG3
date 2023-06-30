@@ -17,6 +17,9 @@
 class FbxObject3d {
 protected://エイリアス
 	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
+public://定数
+	//ボーンの最大数
+	static const int MAX_BONES = 32;
 public:
 	static void StaticInitialize(ID3D12Device* device);
 	static void SetCamera(ViewProjection* view_) { FbxObject3d::view = view_; }
@@ -35,6 +38,11 @@ public://サブクラス
 		Matrix4 viewproj;
 		Matrix4 world;
 		Vector3 cameraPos;
+	};
+	//定数バッファ用データ構造体(スキニング)
+	struct ConstBufferDataSkin
+	{
+		Matrix4 bones[MAX_BONES];
 	};
 public://メンバ関数
 	void Initialize();
@@ -56,6 +64,7 @@ public://メンバ関数
 
 protected://メンバ変数
 	ComPtr<ID3D12Resource> constBuffTransform;
+	ComPtr<ID3D12Resource> constBuffSkin;
 private:
 	static ComPtr<ID3D12RootSignature> rootsignature;
 	static ComPtr<ID3D12PipelineState> pipelinestate;

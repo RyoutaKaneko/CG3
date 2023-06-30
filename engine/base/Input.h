@@ -16,7 +16,6 @@
 
 #define MaxCountrollers 4  
 #define MaxVibration 65535
-#define DIRECTINPUT_VERSION 0x0800 // DirectInputのバージョン指定
 
 // 入力
 class Input final

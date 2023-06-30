@@ -82,10 +82,10 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	//モデル名を指定して読み込み
 	obj = new FbxObject3d;
 	obj->Initialize();
-	model = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
+	model = FbxLoader::GetInstance()->LoadModelFlomFile("boneTest");
 	obj->SetModel(model);
-	obj->SetPosition(Vector3(1, 0, -10));
-	obj->SetScale(Vector3(0.01, 0.01, 0.01));
+	obj->SetPosition(Vector3(0,0,0));
+	obj->SetScale(Vector3(1, 1, 1));
 }
 
 ///-----更新処理-----///
@@ -156,8 +156,8 @@ void GameScene::Draw() {
 // 3Dオブジェクト描画前処理
 	Object3d::PreDraw(dxCommon->GetCommandList());
 
-	player->Draw(viewProjection);
-	test->Draw(viewProjection);
+	//player->Draw(viewProjection);
+	//test->Draw(viewProjection);
 
 	// 3Dオブジェクト描画後処理
 	Object3d::PostDraw();
