@@ -317,7 +317,7 @@ void FbxLoader::Finalize() {
 	fbxManager->Destroy();
 }
 
-void FbxLoader::ConvertMatrixFromFbx(Matrix4 dst, const FbxAMatrix& src) {
+void FbxLoader::ConvertMatrixFromFbx(Matrix4& dst, const FbxAMatrix& src) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			dst.m[i][j] = (float)src.Get(i, j);
@@ -330,6 +330,10 @@ void FbxLoader::ParseSkin(FbxModel* model, FbxMesh* fbxMesh) {
 	static_cast<FbxSkin*>(fbxMesh->GetDeformer(0, FbxDeformer::eSkin));
 	//スキニング情報がなければ終了
 	if (fbxSkin == nullptr) {
+		for (int i = 0; i < model->vertices.size(); i++) {
+			model->vertices[i].boneIndex[0] = 0;
+			model->vertices[i].boneWeight[0] = 1.0f;
+		}
 		return;
 	}
 	//ボーン配列の参照

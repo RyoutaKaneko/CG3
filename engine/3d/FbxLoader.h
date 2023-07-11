@@ -35,7 +35,7 @@ public:
 	void ParseMatrial(FbxModel* model, FbxNode* fbxNode);
 	void LoadTexture(FbxModel* model, const std::string& fullPath);
 
-	static void ConvertMatrixFromFbx(Matrix4 dst, const FbxAMatrix& src);
+	static void ConvertMatrixFromFbx(Matrix4& dst, const FbxAMatrix& src);
 
 	//ファイル名抽出
 	std::string ExtracFileName(const std::string& path);

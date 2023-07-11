@@ -61,6 +61,8 @@ public://メンバ関数
 	// オブジェクトの回転
 	void SetRotation(const Vector3& rotation) { this->worldTransform.rotation_ = rotation; }
 	const Vector3& GetRotation() const { return worldTransform.rotation_; }
+	//アニメーション再生
+	void PlayAnimation();
 
 protected://メンバ変数
 	ComPtr<ID3D12Resource> constBuffTransform;
@@ -73,4 +75,11 @@ private:
 
 	WorldTransform worldTransform;
 	FbxModel* model = nullptr;
+
+	//変数
+	FbxTime frameTime;
+	FbxTime startTime;
+	FbxTime endTime;
+	FbxTime currentTime;
+	bool isPlay = false;
 };

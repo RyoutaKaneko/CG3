@@ -55,6 +55,7 @@ private:
 	//FBX
 	FbxModel* model = nullptr;
 	FbxObject3d* obj = nullptr;
-	
+	FbxModel* cubeModel = nullptr;
+	FbxObject3d* cube = nullptr;
 
 };
