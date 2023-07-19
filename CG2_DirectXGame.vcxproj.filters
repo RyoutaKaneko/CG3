@@ -114,9 +114,6 @@
     <ClCompile Include="engine\3d\ViewProjection.cpp">
       <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="engine\2d\SpriteCommon.cpp">
-      <Filter>ソースファイル\Engine\2d</Filter>
-    </ClCompile>
     <ClCompile Include="engine\3d\WorldTransform.cpp">
       <Filter>ソースファイル\Engine\3d</Filter>
     </ClCompile>
@@ -146,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="app\platform\Framework.cpp">
       <Filter>ソースファイル\Application\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\2d\PostEffect.cpp">
+      <Filter>ソースファイル\Engine\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,9 +225,6 @@
     <ClInclude Include="engine\3d\Model.h">
       <Filter>ヘッダー ファイル\Engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="engine\2d\SpriteCommon.h">
-      <Filter>ヘッダー ファイル\Engine\2d</Filter>
-    </ClInclude>
     <ClInclude Include="engine\math\Vector2.h">
       <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
@@ -266,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="app\scene\BaseScene.h">
       <Filter>ヘッダー ファイル\Application\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\2d\PostEffect.h">
+      <Filter>ヘッダー ファイル\Engine\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

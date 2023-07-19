@@ -3,7 +3,6 @@
 #include "Object3d.h"
 #include"WinApp.h"
 #include"DirectXCommon.h"
-#include "Object3d.h"
 #include "Input.h"
 #include "time.h"
 #include <random>
@@ -13,6 +12,7 @@
 #include "ParticleManager.h"
 #include "FbxObject3d.h"
 #include "FbxModel.h"
+#include "PostEffect.h"
 
 class GameScene {
 public:
@@ -21,7 +21,7 @@ public:
 
 	~GameScene();
 
-	void Initialize(SpriteCommon& spriteCommon);
+	void Initialize();
 
 	void Update();
 

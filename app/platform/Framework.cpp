@@ -47,11 +47,22 @@ void Framework::Initialize()
 	FbxLoader::GetInstance()->Initialize(dXCommon->GetDevice());
 	//
 	FbxObject3d::StaticInitialize(dXCommon->GetDevice());
+
+	post = new PostEffect();
+	spriteCommon = post->SpriteCommonCreate(dXCommon->GetDevice());
+	post->SpriteCommonLoadTexture(spriteCommon, 0, L"Resources/white1x1.png", dXCommon->GetDevice());
+	postEffect.SpriteCreate(dXCommon->GetDevice());
+	postEffect.SetTexNumber(0);
+	postEffect.SetPosition(Vector3(0, 100, 0));
+	postEffect.SetScale(Vector2(256 * 1, 256 * 1));
+	postEffect.SpriteTransferVertexBuffer();
+	postEffect.SpriteUpdate(spriteCommon);
+
 #pragma endregion 基盤システムの初期化
 
 	//ゲームシーン
 	gameScene = new GameScene();
-	gameScene->Initialize(spriteCommon);
+	gameScene->Initialize();
 }
 
 void Framework::Update()
@@ -78,6 +89,7 @@ void Framework::Draw()
 	dXCommon->PreDraw();
 	//=== ゲームシーン描画 ===//
 	gameScene->Draw();
+	postEffect.Draw(dXCommon->GetCommandList(), spriteCommon, dXCommon->GetDevice());
 	// 描画後処理
 	dXCommon->PostDraw();
 #pragma endregion
@@ -89,5 +101,5 @@ void Framework::Finalize()
 	FbxLoader::GetInstance()->Finalize();
 	// WindowsAPIの終了処理
 	winApp->Finalize();
-	
+
 }

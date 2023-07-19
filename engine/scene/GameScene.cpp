@@ -3,19 +3,19 @@
 #include "FbxObject3d.h"
 
 GameScene::GameScene() {
-	
+
 }
 GameScene::~GameScene() {
 	delete player;
 }
 
 ///-----変数の初期化-----///
-void GameScene::Initialize(SpriteCommon& spriteCommon) {
+void GameScene::Initialize() {
 	//基盤
 	dxCommon = DirectXCommon::GetInstance();
 	winApp = WinApp::GetInstance();
 	input = Input::GetInstance();
-	
+
 	//player
 	playerModel = Model::LoadFromOBJ("triangle_mat");
 	player = Object3d::Create();
@@ -43,29 +43,25 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	// スプライトの初期化
 	// スプライト
 	sprite = new Sprite();
-	spriteCommon_ = sprite->SpriteCommonCreate(dxCommon->GetDevice(), 1280, 720);
-	// スプライト用パイプライン生成呼び出し
-	PipelineSet spritePipelineSet = sprite->SpriteCreateGraphicsPipeline(dxCommon->GetDevice());
+	spriteCommon_ = sprite->SpriteCommonCreate(dxCommon->GetDevice());
+	sprite->SpriteCommonLoadTexture(spriteCommon_, 0, L"Resources/wood.png", dxCommon->GetDevice());
+	sprite->SpriteCommonLoadTexture(spriteCommon_, 1, L"Resources/reimu.png", dxCommon->GetDevice());
 
 	//木の画像
-	wood.LoadTexture(spriteCommon_, 0, L"Resources/wood.png", dxCommon->GetDevice());
-	wood.SetColor(Vector4(1, 1, 1, 1));
-	wood.SpriteCreate(dxCommon->GetDevice(), 50, 50, 0, spriteCommon, Vector2(0.0f, 0.0f), false, false);
+	wood.SpriteCreate(dxCommon->GetDevice());
+	wood.SetTexNumber(0);
 	wood.SetPosition(Vector3(0, 0, 0));
 	wood.SetScale(Vector2(128 * 1, 128 * 1));
-	wood.SetRotation(0.0f);
-	wood.SpriteTransferVertexBuffer(wood, spriteCommon, 0);
-	wood.SpriteUpdate(wood, spriteCommon_);
+	wood.SpriteTransferVertexBuffer();
+	wood.SpriteUpdate(spriteCommon_);
 
-	//霊夢の画像
-	reimu.LoadTexture(spriteCommon_, 1, L"Resources/reimu.png", dxCommon->GetDevice());
-	reimu.SetColor(Vector4(1, 1, 1, 1));
-	reimu.SpriteCreate(dxCommon->GetDevice(), 50, 50, 1, spriteCommon, Vector2(0.0f, 0.0f), false, false);
+	////霊夢の画像
+	reimu.SpriteCreate(dxCommon->GetDevice());
+	reimu.SetTexNumber(1);
 	reimu.SetPosition(Vector3(1100, 0, 0));
 	reimu.SetScale(Vector2(128 * 1, 128 * 1));
-	reimu.SetRotation(0.0f);
-	reimu.SpriteTransferVertexBuffer(reimu, spriteCommon, 1);
-	reimu.SpriteUpdate(reimu, spriteCommon_);
+	reimu.SpriteTransferVertexBuffer();
+	reimu.SpriteUpdate(spriteCommon_);
 
 	//パーティクル初期化
 	particle = Particle::LoadParticleTexture("wood.png");
@@ -84,7 +80,7 @@ void GameScene::Initialize(SpriteCommon& spriteCommon) {
 	model = FbxLoader::GetInstance()->LoadModelFlomFile("boneTest");
 	obj->SetModel(model);
 	obj->Initialize();
-	obj->SetPosition(Vector3(0,0,0));
+	obj->SetPosition(Vector3(0, 0, 0));
 	obj->SetScale(Vector3(1, 1, 1));
 
 	cube = new FbxObject3d;
@@ -161,7 +157,7 @@ void GameScene::Update() {
 void GameScene::Draw() {
 #pragma region 3Dオブジェクト描画
 
-// 3Dオブジェクト描画前処理
+	// 3Dオブジェクト描画前処理
 	Object3d::PreDraw(dxCommon->GetCommandList());
 
 	//player->Draw(viewProjection);
@@ -203,12 +199,13 @@ void GameScene::Draw() {
 #pragma region スプライト描画
 
 	// スプライト描画前処理
-	Sprite::PreDraw(dxCommon->GetCommandList(), spriteCommon_);
+	//Sprite::PreDraw(dxCommon->GetCommandList(), spriteCommon_);
+	sprite->SpriteCommonBeginDraw(dxCommon->GetCommandList(), spriteCommon_);
 
 	///=== スプライト描画 ===///
-	wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice(), wood.vbView);
-	reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice(), reimu.vbView);
+	wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
+	reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
 
 	// スプライト描画後処理
-	Sprite::PostDraw();
+	//Sprite::PostDraw();
 }

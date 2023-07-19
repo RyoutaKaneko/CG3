@@ -21,6 +21,7 @@
 #include<DirectXMath.h>
 #include<dinput.h>
 #include<DirectXTex.h>
+#include "PostEffect.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 #pragma comment(lib,"dxguid.lib")
@@ -52,7 +53,9 @@ protected:
 	WinApp* winApp = nullptr;
 	DirectXCommon* dXCommon = nullptr;
 	Input* input = nullptr;
+	PostEffect* post = nullptr;
 	SpriteCommon spriteCommon;
+	PostEffect postEffect;
 	GameScene* gameScene = nullptr;
 	ParticleManager* particleManager = nullptr;
 

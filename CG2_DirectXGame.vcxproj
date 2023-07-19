@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="app\platform\Framework.cpp" />
     <ClCompile Include="app\scene\BaseScene.cpp" />
+    <ClCompile Include="engine\2d\PostEffect.cpp" />
     <ClCompile Include="engine\base\DirectXCommon.cpp" />
     <ClCompile Include="engine\base\Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -165,7 +166,6 @@
     <ClCompile Include="engine\effect\Particle.cpp" />
     <ClCompile Include="engine\effect\ParticleManager.cpp" />
     <ClCompile Include="engine\2d\Sprite.cpp" />
-    <ClCompile Include="engine\2d\SpriteCommon.cpp" />
     <ClCompile Include="engine\math\Vector2.cpp" />
     <ClCompile Include="engine\math\Vector3.cpp" />
     <ClCompile Include="engine\math\Vector4.cpp" />
@@ -256,6 +256,7 @@
   <ItemGroup>
     <ClInclude Include="app\platform\Framework.h" />
     <ClInclude Include="app\scene\BaseScene.h" />
+    <ClInclude Include="engine\2d\PostEffect.h" />
     <ClInclude Include="engine\base\DirectXCommon.h" />
     <ClInclude Include="engine\base\Input.h" />
     <ClInclude Include="engine\math\Matrix4.h" />
@@ -264,7 +265,6 @@
     <ClInclude Include="engine\effect\Particle.h" />
     <ClInclude Include="engine\effect\ParticleManager.h" />
     <ClInclude Include="engine\2d\Sprite.h" />
-    <ClInclude Include="engine\2d\SpriteCommon.h" />
     <ClInclude Include="engine\math\Vector2.h" />
     <ClInclude Include="engine\math\Vector3.h" />
     <ClInclude Include="engine\math\Vector4.h" />
