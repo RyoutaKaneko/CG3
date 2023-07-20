@@ -77,10 +77,12 @@ void Framework::Draw()
 #pragma endregion
 
 #pragma region •`‰æ
+	postEffect.PreDrawScene(dXCommon->GetCommandList());
+	gameScene->Draw();
+	postEffect.PostDrawScene(dXCommon->GetCommandList());
 	// •`‰æ‘Oˆ—
 	dXCommon->PreDraw();
 	//=== ƒQ[ƒ€ƒV[ƒ“•`‰æ ===//
-	/*gameScene->Draw();*/
 	postEffect.Draw(dXCommon->GetCommandList(), dXCommon->GetDevice());
 	// •`‰æŒãˆ—
 	dXCommon->PostDraw();

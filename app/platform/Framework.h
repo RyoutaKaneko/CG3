@@ -53,8 +53,6 @@ protected:
 	WinApp* winApp = nullptr;
 	DirectXCommon* dXCommon = nullptr;
 	Input* input = nullptr;
-	PostEffect* post = nullptr;
-	SpriteCommon spriteCommon;
 	PostEffect postEffect;
 	GameScene* gameScene = nullptr;
 	ParticleManager* particleManager = nullptr;
