@@ -49,8 +49,6 @@ void Framework::Initialize()
 	FbxObject3d::StaticInitialize(dXCommon->GetDevice());
 
 	postEffect.Initialize(dXCommon->GetDevice());
-	/*postEffect.SpriteTransferVertexBuffer();
-	postEffect.SpriteUpdate(spriteCommon);*/
 
 #pragma endregion Šî”ÕƒVƒXƒeƒ€‚Ì‰Šú‰»
 

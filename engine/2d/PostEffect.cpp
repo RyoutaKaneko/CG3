@@ -51,6 +51,7 @@ void PostEffect::Initialize(ID3D12Device* dev)
 	srvDesc.Texture2D.MipLevels = 1;
 	//デスクリプタヒープにSRV作成
 	dev->CreateShaderResourceView(texBuff.Get(), &srvDesc, descHeapSRV->GetCPUDescriptorHandleForHeapStart());
+	SetScale(Vector2(512, 512));
 	SpriteUpdate(spriteCommon);
 }
 
