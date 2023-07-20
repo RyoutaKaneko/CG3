@@ -19,7 +19,7 @@ private:
 
 private:
 	//テクスチャバッファ
-	ComPtr<ID3D12Resource> texBuff;
+	ComPtr<ID3D12Resource> texBuff[2];
 	//深度バッファ
 	ComPtr<ID3D12Resource> depthBuff;
 	//SRV用デスクリプタヒープ

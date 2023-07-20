@@ -3,9 +3,24 @@
 Texture2D<float4> tex : register(t0);  // 0番スロットに設定されたテクスチャ
 SamplerState smp : register(s0);      // 0番スロットに設定されたサンプラー
 
-
-float4 main(VSOutput input) : SV_TARGET
+struct PSOutput
 {
+    float4 target0 : SV_Target0;
+    float4 target1 : SV_Target1;
+};
+
+PSOutput main(VSOutput input) : SV_TARGET
+{
+    PSOutput output;
 	float4 texcolor = tex.Sample(smp, input.uv);
-	return texcolor;
+    
+    //Lambert反射
+    float3 light = normalize(float3(1, -1, 1));
+    float diffuse = saturate(dot(-light, input.normal));
+    float brightness = diffuse + 0.3f;
+    float shadercolor = float4(brightness, brightness, brightness, 1.0f);
+    //陰影とテクスチャの色を合成
+    output.target0 = shadercolor * texcolor;
+    output.target1 = float4(1 - (shadercolor * texcolor).rgb, 1);
+	return output;
 }
