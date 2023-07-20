@@ -180,7 +180,7 @@ void PostEffect::Draw(ID3D12GraphicsCommandList* cmdList_)
 		static int tex = 0;
 		//テクスチャ番号0と1で切り替え
 		tex = (tex + 1) % 2;
-		
+		 
 		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
 		srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
