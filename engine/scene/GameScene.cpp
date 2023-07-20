@@ -29,7 +29,7 @@ void GameScene::Initialize() {
 	//カメラ
 	viewProjection = new ViewProjection;
 	viewProjection->Initialize();
-	viewProjection->eye = { 0, 3, -30 };
+	viewProjection->eye = { 0, 3, -15 };
 	viewProjection->target = { 0, 0, 0 };
 
 	xmViewProjection = new XMViewProjection;
@@ -82,12 +82,13 @@ void GameScene::Initialize() {
 	obj->Initialize();
 	obj->SetPosition(Vector3(0, 0, 0));
 	obj->SetScale(Vector3(1, 1, 1));
+	obj->SetRotation(Vector3(0, 90, 0));
 
 	cube = new FbxObject3d;
 	cubeModel = FbxLoader::GetInstance()->LoadModelFlomFile("cube");
 	cube->SetModel(cubeModel);
 	cube->Initialize();
-	cube->SetPosition(Vector3(1, 0, -10));
+	cube->SetPosition(Vector3(1, 0, -8));
 	cube->SetScale(Vector3((float)0.01, (float)0.01, (float)0.01));
 }
 
@@ -188,8 +189,8 @@ void GameScene::Draw() {
 
 	///==== パーティクル描画 ====///
 	//パーティクル
-	pm->Draw();
-	pm_->Draw();
+	//pm->Draw();
+	//pm_->Draw();
 
 	// パーティクル描画後処理
 	ParticleManager::PostDraw();
@@ -200,11 +201,11 @@ void GameScene::Draw() {
 
 	// スプライト描画前処理
 	//Sprite::PreDraw(dxCommon->GetCommandList(), spriteCommon_);
-	sprite->SpriteCommonBeginDraw(dxCommon->GetCommandList(), spriteCommon_);
+	//sprite->SpriteCommonBeginDraw(dxCommon->GetCommandList(), spriteCommon_);
 
-	///=== スプライト描画 ===///
-	wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
-	reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
+	/////=== スプライト描画 ===///
+	//wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
+	//reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
 
 	// スプライト描画後処理
 	//Sprite::PostDraw();

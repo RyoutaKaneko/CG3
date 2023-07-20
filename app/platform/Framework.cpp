@@ -83,7 +83,7 @@ void Framework::Draw()
 	// •`‰æ‘Oˆ—
 	dXCommon->PreDraw();
 	//=== ƒQ[ƒ€ƒV[ƒ“•`‰æ ===//
-	postEffect.Draw(dXCommon->GetCommandList(), dXCommon->GetDevice());
+	postEffect.Draw(dXCommon->GetCommandList());
 	// •`‰æŒãˆ—
 	dXCommon->PostDraw();
 #pragma endregion

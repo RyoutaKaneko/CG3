@@ -16,7 +16,6 @@ PipelineSet Sprite::SpriteCreateGraphicsPipeline(ID3D12Device* device) {
 		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, // デバッグ用設定
 		0,
 		&vsBlob, &errorBlob);
-
 	// エラーなら
 	if (FAILED(result)) {
 		// errorBlobからエラー内容をstring型にコピー
