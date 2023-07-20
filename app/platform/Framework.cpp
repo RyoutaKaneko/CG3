@@ -48,15 +48,9 @@ void Framework::Initialize()
 	//
 	FbxObject3d::StaticInitialize(dXCommon->GetDevice());
 
-	post = new PostEffect();
-	spriteCommon = post->SpriteCommonCreate(dXCommon->GetDevice());
-	post->SpriteCommonLoadTexture(spriteCommon, 0, L"Resources/white1x1.png", dXCommon->GetDevice());
-	postEffect.SpriteCreate(dXCommon->GetDevice());
-	postEffect.SetTexNumber(0);
-	postEffect.SetPosition(Vector3(0, 100, 0));
-	postEffect.SetScale(Vector2(256 * 1, 256 * 1));
-	postEffect.SpriteTransferVertexBuffer();
-	postEffect.SpriteUpdate(spriteCommon);
+	postEffect.Initialize(dXCommon->GetDevice());
+	/*postEffect.SpriteTransferVertexBuffer();
+	postEffect.SpriteUpdate(spriteCommon);*/
 
 #pragma endregion Šî”ÕƒVƒXƒeƒ€‚Ì‰Šú‰»
 
@@ -88,8 +82,8 @@ void Framework::Draw()
 	// •`‰æ‘Oˆ—
 	dXCommon->PreDraw();
 	//=== ƒQ[ƒ€ƒV[ƒ“•`‰æ ===//
-	gameScene->Draw();
-	postEffect.Draw(dXCommon->GetCommandList(), spriteCommon, dXCommon->GetDevice());
+	/*gameScene->Draw();*/
+	postEffect.Draw(dXCommon->GetCommandList(), dXCommon->GetDevice());
 	// •`‰æŒãˆ—
 	dXCommon->PostDraw();
 #pragma endregion
