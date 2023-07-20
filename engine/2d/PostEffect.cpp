@@ -58,7 +58,7 @@ void PostEffect::Initialize(ID3D12Device* dev)
 void PostEffect::Draw(ID3D12GraphicsCommandList* cmdList_,ID3D12Device* dev)
 {
 	this->cmdList = cmdList_;
-
+	 
 	// パイプラインステートとルートシグネチャの設定コマンド
 	cmdList->SetPipelineState(spriteCommon.pipelineSet.pipelinestate.Get());
 	cmdList->SetGraphicsRootSignature(spriteCommon.pipelineSet.rootsignature.Get());
