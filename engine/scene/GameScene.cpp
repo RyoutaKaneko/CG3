@@ -29,7 +29,7 @@ void GameScene::Initialize() {
 	//ƒJƒƒ‰
 	viewProjection = new ViewProjection;
 	viewProjection->Initialize();
-	viewProjection->eye = { 0, 3, -15 };
+	viewProjection->eye = { 0, 3, -13 };
 	viewProjection->target = { 0, 0, 0 };
 
 	xmViewProjection = new XMViewProjection;
