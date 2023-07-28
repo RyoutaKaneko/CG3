@@ -52,6 +52,7 @@ void GameScene::Initialize() {
 	wood.SetTexNumber(0);
 	wood.SetPosition(Vector3(0, 0, 0));
 	wood.SetScale(Vector2(128 * 1, 128 * 1));
+	wood.SetRotation(0.0f);
 	wood.SpriteTransferVertexBuffer();
 	wood.SpriteUpdate(spriteCommon_);
 
@@ -96,6 +97,9 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	input->Update();
 
+	/*wood.SetRotation(wood.GetRotation() + 0.1f);
+	wood.SpriteTransferVertexBuffer();
+	wood.SpriteUpdate(spriteCommon_);*/
 	//player移動
 	if (input->PushKey(DIK_W)) {
 		player->SetPosition(player->GetPosition() + Vector3(0, 0, 0.1f));
@@ -201,11 +205,11 @@ void GameScene::Draw() {
 
 	// スプライト描画前処理
 	//Sprite::PreDraw(dxCommon->GetCommandList(), spriteCommon_);
-	//sprite->SpriteCommonBeginDraw(dxCommon->GetCommandList(), spriteCommon_);
+	sprite->SpriteCommonBeginDraw(dxCommon->GetCommandList(), spriteCommon_);
 
 	/////=== スプライト描画 ===///
-	//wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
-	//reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
+	wood.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
+	reimu.SpriteDraw(dxCommon->GetCommandList(), spriteCommon_, dxCommon->GetDevice());
 
 	// スプライト描画後処理
 	//Sprite::PostDraw();

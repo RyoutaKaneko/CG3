@@ -99,6 +99,7 @@ public:
 	void SetTexNumber(UINT texnumber) { this->texNumber = texnumber; }
 	void SetPosition(Vector3 position) { this->position = position; }
 	void SetScale(Vector2 scale) { this->scale = scale; }
+	void SetRotation(float rotate) { this->rotation = rotation; }
 	const Vector3& GetPosition() const { return position; }
 
 	void Release();
@@ -106,6 +107,8 @@ public:
 
 	void SetAlpha(float alpha_);
 	void SetColor(Vector4 color_);
+
+	float GetRotation() { return rotation; }
 
 public:
 	void SetPiplineSet(PipelineSet piplineSet);

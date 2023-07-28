@@ -345,5 +345,5 @@ Vector3 operator*(const Vector3& v, const Matrix4& m)
 }
 
 float Matrix4::ConvertToRadian(float rad) {
-	return rad * (3.141592 / 180);
+	return rad * (3.141592f / 180.0f);
 }
